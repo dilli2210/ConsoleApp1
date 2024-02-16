@@ -26,27 +26,44 @@ namespace ConsoleApp1.BusinessLayer
             }
         }
 
-        public void Move()
+        public bool Move()
         {
-            switch (facing)
+            bool move = false;
+            if(facing == Direction.NORTH)
             {
-                case Direction.NORTH:
-                    if (IsValidPosition(x, y + 1))
-                        y++;
-                    break;
-                case Direction.EAST:
-                    if (IsValidPosition(x + 1, y))
-                        x++;
-                    break;
-                case Direction.SOUTH:
-                    if (IsValidPosition(x, y - 1))
-                        y--;
-                    break;
-                case Direction.WEST:
-                    if (IsValidPosition(x - 1, y))
-                        x--;
-                    break;
+                if (move = IsValidPosition(x, y + 1))
+                {
+                    y++;
+                }
+                    
             }
+            else if(facing == Direction.EAST)
+            {
+                if (move = IsValidPosition(x + 1, y))
+                {
+                    x++;
+                }
+                   
+            }
+            else if (facing == Direction.SOUTH)
+            {
+                if (move = IsValidPosition(x, y - 1))
+                {
+                    y--;
+                }
+
+            }
+            else if (facing == Direction.WEST)
+            {
+                if (move = IsValidPosition(x - 1, y))
+                {
+                    x--;
+                }
+
+            }
+
+            return move;
+
         }
 
         public void Left()
@@ -59,21 +76,9 @@ namespace ConsoleApp1.BusinessLayer
             facing = (Direction)(((int)facing + 1) % 4);
         }
 
-        public string Report()
+        public string Report(bool report)
         { 
-         if(facing == Direction.NORTH && x == 4 && y == 0)
-            {
-                return $"REPORT \n Output: {x},{y},{facing} ,{"ROBOT AT THE EDGE OF TABLE SO PLEASE CHOOSE LEFT OR RIGHT TO MOVE "}";
-            }
-         else if(facing == Direction.EAST && x == 4 && y == 0)
-            {
-                return $"REPORT \n Output: {x},{y},{facing} ,{"ROBOT AT THE EDGE OF TABLE SO PLEASE CHOOSE LEFT OR RIGHT TO MOVE "}";
-            }
-            else if (facing == Direction.SOUTH && x == 0 && y == 0)
-            {
-                return $"REPORT \n Output: {x},{y},{facing} ,{"ROBOT AT THE EDGE OF TABLE SO PLEASE CHOOSE LEFT OR RIGHT TO MOVE "}";
-            }
-            else if (facing == Direction.WEST && x == 0 && y == 0)
+         if(!report)
             {
                 return $"REPORT \n Output: {x},{y},{facing} ,{"ROBOT AT THE EDGE OF TABLE SO PLEASE CHOOSE LEFT OR RIGHT TO MOVE "}";
             }

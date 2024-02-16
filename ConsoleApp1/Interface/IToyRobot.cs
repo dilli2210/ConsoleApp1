@@ -10,9 +10,9 @@ namespace ConsoleApp1.Interface
     public interface IToyRobot
     {
         void Place(int x, int y, Direction facing);
-        void Move();
+        bool Move();
         void Left();
         void Right();
-        string Report();
+        string Report(bool report);
     }
 }
